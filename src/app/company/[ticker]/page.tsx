@@ -68,6 +68,8 @@ interface ChartDataset {
   }[]
 }
 
+// Updated for Finnhub
+
 export default function CompanyPage({ params }: { params: { ticker: string } }) {
   const ticker = params.ticker.toUpperCase()
   const apiKey = process.env.NEXT_PUBLIC_FINNHUB_KEY
