@@ -1,5 +1,4 @@
 "use client"
-
 import { useState } from "react"
 import Link from "next/link"
 import { supabase } from "../../lib/supabaseClient"
@@ -18,10 +17,7 @@ export default function RegisterPage() {
       return
     }
 
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-    })
+    const { data, error } = await supabase.auth.signUp({ email, password })
 
     if (error) {
       setMessage(error.message)
@@ -60,49 +56,13 @@ export default function RegisterPage() {
       {/* Register Form */}
       <main className="flex flex-col items-center justify-center flex-1 text-center px-6">
         <h1 className="text-3xl font-bold text-white mb-6">Create an Account</h1>
-
         <div className="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md">
-          <input
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
-          />
-          <button
-            onClick={handleRegister}
-            className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-          >
-            Register
-          </button>
+          <input type="text" placeholder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full mb-4 p-3 rounded bg-gray-100 text-black"/>
+          <input type="text" placeholder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)} className="w-full mb-4 p-3 rounded bg-gray-100 text-black"/>
+          <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} className="w-full mb-4 p-3 rounded bg-gray-100 text-black"/>
+          <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} className="w-full mb-4 p-3 rounded bg-gray-100 text-black"/>
+          <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} className="w-full mb-4 p-3 rounded bg-gray-100 text-black"/>
+          <button onClick={handleRegister} className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Register</button>
           {message && <p className="mt-4 text-sm text-gray-300">{message}</p>}
         </div>
       </main>

@@ -1,11 +1,9 @@
 "use client"
-
 import { useState } from "react"
 import Link from "next/link"
 import { supabase } from "../../lib/supabaseClient"
 
-// ✅ Define a type for companies
-type Company = {
+interface Company {
   ticker: string
   name: string
 }
@@ -33,7 +31,6 @@ export default function SearchPage() {
         .limit(10)
 
       if (tickerError) throw tickerError
-
       let finalResults: Company[] = tickerResults || []
 
       // Step 2: If nothing found by ticker, search by name
