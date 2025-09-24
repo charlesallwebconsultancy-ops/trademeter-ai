@@ -1,5 +1,7 @@
 "use client"
+
 import { useState } from "react"
+import Link from "next/link"
 import { supabase } from "../../lib/supabaseClient"
 
 export default function RegisterPage() {
@@ -11,13 +13,11 @@ export default function RegisterPage() {
   const [message, setMessage] = useState("")
 
   const handleRegister = async () => {
-    // Check password match
     if (password !== confirmPassword) {
       setMessage("Passwords do not match.")
       return
     }
 
-    // Create user in Supabase auth
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -28,14 +28,12 @@ export default function RegisterPage() {
       return
     }
 
-    // If signup is successful, insert into profiles table
     const user = data.user
     if (user) {
       const { error: profileError } = await supabase
         .from("profiles")
-        .insert([
-          { id: user.id, first_name: firstName, last_name: lastName }
-        ])
+        .insert([{ id: user.id, first_name: firstName, last_name: lastName }])
+
       if (profileError) {
         setMessage("Account created, but profile save failed.")
         console.error(profileError)
@@ -52,10 +50,10 @@ export default function RegisterPage() {
       <nav className="flex justify-between items-center px-8 py-4 shadow-md bg-gray-800">
         <div className="text-xl font-bold text-white">Trade Meter AI</div>
         <div className="space-x-6">
-          <a href="/" className="text-gray-300 hover:text-[#9AC0DB]">Home</a>
-          <a href="/about" className="text-gray-300 hover:text-[#9AC0DB]">About Us</a>
-          <a href="/analyst" className="text-gray-300 hover:text-[#9AC0DB]">AI Analyst</a>
-          <a href="/contact" className="text-gray-300 hover:text-[#9AC0DB]">Contact Us</a>
+          <Link href="/" className="text-gray-300 hover:text-[#9AC0DB]">Home</Link>
+          <Link href="/about" className="text-gray-300 hover:text-[#9AC0DB]">About Us</Link>
+          <Link href="/analyst" className="text-gray-300 hover:text-[#9AC0DB]">AI Analyst</Link>
+          <Link href="/contact" className="text-gray-300 hover:text-[#9AC0DB]">Contact Us</Link>
         </div>
       </nav>
 
@@ -68,35 +66,35 @@ export default function RegisterPage() {
             type="text"
             placeholder="First Name"
             value={firstName}
-            onChange={e => setFirstName(e.target.value)}
+            onChange={(e) => setFirstName(e.target.value)}
             className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
           />
           <input
             type="text"
             placeholder="Last Name"
             value={lastName}
-            onChange={e => setLastName(e.target.value)}
+            onChange={(e) => setLastName(e.target.value)}
             className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
           />
           <input
             type="email"
             placeholder="Email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
           />
           <input
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
           />
           <button

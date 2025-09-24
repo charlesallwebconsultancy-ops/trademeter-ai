@@ -1,11 +1,18 @@
 "use client"
+
 import { useState } from "react"
 import Link from "next/link"
 import { supabase } from "../../lib/supabaseClient"
 
+// ✅ Define a type for companies
+type Company = {
+  ticker: string
+  name: string
+}
+
 export default function SearchPage() {
   const [query, setQuery] = useState("")
-  const [results, setResults] = useState<any[]>([])
+  const [results, setResults] = useState<Company[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
@@ -19,7 +26,7 @@ export default function SearchPage() {
       console.log("Searching for:", query)
 
       // Step 1: Search ticker
-      let { data: tickerResults, error: tickerError } = await supabase
+      const { data: tickerResults, error: tickerError } = await supabase
         .from("companies")
         .select("ticker, name")
         .ilike("ticker", `%${query}%`)
@@ -27,11 +34,11 @@ export default function SearchPage() {
 
       if (tickerError) throw tickerError
 
-      let finalResults = tickerResults || []
+      let finalResults: Company[] = tickerResults || []
 
       // Step 2: If nothing found by ticker, search by name
       if (finalResults.length === 0) {
-        let { data: nameResults, error: nameError } = await supabase
+        const { data: nameResults, error: nameError } = await supabase
           .from("companies")
           .select("ticker, name")
           .ilike("name", `%${query}%`)
@@ -42,8 +49,8 @@ export default function SearchPage() {
       }
 
       setResults(finalResults)
-    } catch (err: any) {
-      console.error("Search error:", err.message)
+    } catch (err: unknown) {
+      console.error("Search error:", err)
       setError("Something went wrong. Please try again.")
     } finally {
       setLoading(false)
@@ -72,7 +79,7 @@ export default function SearchPage() {
             placeholder="Enter company name or ticker..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()} // Enter key support
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             className="flex-1 p-3 rounded bg-gray-100 text-black"
           />
           <button

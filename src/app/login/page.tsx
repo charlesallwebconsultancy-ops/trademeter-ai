@@ -1,6 +1,8 @@
 "use client"
+
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { supabase } from "../../lib/supabaseClient"
 
 export default function LoginPage() {
@@ -25,10 +27,10 @@ export default function LoginPage() {
       <nav className="flex justify-between items-center px-8 py-4 shadow-md bg-gray-800">
         <div className="text-xl font-bold text-white">Trade Meter AI</div>
         <div className="space-x-6">
-          <a href="/" className="text-gray-300 hover:text-[#9AC0DB]">Home</a>
-          <a href="/about" className="text-gray-300 hover:text-[#9AC0DB]">About Us</a>
-          <a href="/analyst" className="text-gray-300 hover:text-[#9AC0DB]">AI Analyst</a>
-          <a href="/contact" className="text-gray-300 hover:text-[#9AC0DB]">Contact Us</a>
+          <Link href="/" className="text-gray-300 hover:text-[#9AC0DB]">Home</Link>
+          <Link href="/about" className="text-gray-300 hover:text-[#9AC0DB]">About Us</Link>
+          <Link href="/analyst" className="text-gray-300 hover:text-[#9AC0DB]">AI Analyst</Link>
+          <Link href="/contact" className="text-gray-300 hover:text-[#9AC0DB]">Contact Us</Link>
         </div>
       </nav>
 
@@ -41,14 +43,14 @@ export default function LoginPage() {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
           />
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full mb-4 p-3 rounded bg-gray-100 text-black"
           />
           <button

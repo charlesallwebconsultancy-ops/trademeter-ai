@@ -1,6 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -9,10 +8,10 @@ export default function Home() {
       <nav className="flex justify-between items-center px-8 py-4 shadow-md bg-gray-800">
         <div className="text-xl font-bold text-white">Trade Meter AI</div>
         <div className="space-x-6">
-          <a href="/" className="text-gray-300 hover:text-[#9AC0DB]">Home</a>
-          <a href="/about" className="text-gray-300 hover:text-[#9AC0DB]">About Us</a>
-          <a href="/analyst" className="text-gray-300 hover:text-[#9AC0DB]">AI Analyst</a>
-          <a href="/contact" className="text-gray-300 hover:text-[#9AC0DB]">Contact Us</a>
+          <Link href="/" className="text-gray-300 hover:text-[#9AC0DB]">Home</Link>
+          <Link href="/about" className="text-gray-300 hover:text-[#9AC0DB]">About Us</Link>
+          <Link href="/analyst" className="text-gray-300 hover:text-[#9AC0DB]">AI Analyst</Link>
+          <Link href="/contact" className="text-gray-300 hover:text-[#9AC0DB]">Contact Us</Link>
         </div>
       </nav>
 
@@ -42,21 +41,20 @@ export default function Home() {
         </p>
 
         {/* Register / Login Buttons */}
-<div className="space-x-4 mb-16">
-  <Link
-    href="/register"
-    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-  >
-    Register
-  </Link>
-  <Link
-    href="/login"
-    className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition"
-  >
-    Login
-  </Link>
-</div>
-
+        <div className="space-x-4 mb-16">
+          <Link
+            href="/register"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+          >
+            Register
+          </Link>
+          <Link
+            href="/login"
+            className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition"
+          >
+            Login
+          </Link>
+        </div>
       </main>
 
       {/* Footer */}
@@ -64,5 +62,5 @@ export default function Home() {
         © {new Date().getFullYear()} Trade Meter AI. All rights reserved.
       </footer>
     </div>
-  );
+  )
 }
