@@ -16,7 +16,7 @@ export default function LoginPage() {
     if (error) {
       setMessage(error.message)
     } else {
-      // ✅ Redirect to /search after login
+      //  Redirect to /search after login
       router.push("/search")
     }
   }
