@@ -46,7 +46,7 @@ export default function SearchPage() {
       }
 
       setResults(finalResults)
-    } catch (err: unknown) {
+    } catch (err: Error | unknown) {
       console.error("Search error:", err)
       setError("Something went wrong. Please try again.")
     } finally {
