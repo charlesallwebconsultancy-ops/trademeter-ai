@@ -100,7 +100,9 @@ export default function CompanyPage({ params }: { params: { ticker: string } }) 
           setChartData(null)
           return
         }
-
+        
+// Updated for yahoo finance
+        
         const yahooRes = await fetch(
           `https://yh-finance.p.rapidapi.com/stock/v3/get-chart?symbol=${ticker}&interval=1d&range=1mo`,
           {
